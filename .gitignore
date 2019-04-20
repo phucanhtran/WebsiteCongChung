@@ -1,8 +1,8 @@
 # Don't track content of these folders
 node_modules/
 someOtherfoler/
-
-
+WebsiteCongChung/WebsiteCongChung/assets/
+assets/
 # Compiled source #
 ###################
 *.com
