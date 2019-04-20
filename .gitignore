@@ -3,6 +3,7 @@ node_modules/
 someOtherfoler/
 WebsiteCongChung/WebsiteCongChung/assets/
 assets/
+.vs/
 # Compiled source #
 ###################
 *.com
@@ -11,7 +12,7 @@ assets/
 *.exe
 *.o
 *.so
-
+*.css
 *.so
 
 # Packages #
