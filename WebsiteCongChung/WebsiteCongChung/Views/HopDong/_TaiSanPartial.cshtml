@@ -1,0 +1,71 @@
+﻿@using WebsiteCongChung.Models
+@model TaiSanViewModel
+@{
+    using (Html.BeginForm("InPhieuYeuCau", "HopDong"))
+    {
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="col-md-2 pull-right">
+                        <input type="submit" value="Kiểm tra tài sản" class="btn btn-default btn-group-justified" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Số Sổ</label>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.TenTaiSan, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.TenTaiSan, "", new { @class = "text-danger" })
+                    </div>
+
+                    <label class="col-md-2 control-label">Số Vào Sổ</label>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.TenTaiSan, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.TenTaiSan, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Nhà Số</label>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.TenTaiSan, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.TenTaiSan, "", new { @class = "text-danger" })
+                    </div>
+
+                    <label class="col-md-2 control-label">Đường</label>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.TenTaiSan, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.TenTaiSan, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Phường</label>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.TenTaiSan, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.TenTaiSan, "", new { @class = "text-danger" })
+                    </div>
+
+                    <label class="col-md-2 control-label">Quận/Huyện</label>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.TenTaiSan, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.TenTaiSan, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
