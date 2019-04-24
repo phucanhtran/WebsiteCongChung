@@ -1,153 +1,250 @@
 ﻿@using WebsiteCongChung.Models
 @model HopDongViewModel
 @{
+    /**/
+
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Scripts.Render("~/Scripts/jquery.min.js")
+@section Scripts {
+    @Scripts.Render("~/assets/global/plugins/bootstrap-toastr/toastr.min.js")
+    @Scripts.Render("~/assets/pages/scripts/ui-toastr.min.js")
+    @Scripts.Render("~/Scripts/kendo.all.min.js")
+
+}
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.516/styles/kendo.common-material.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.516/styles/kendo.material.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.516/styles/kendo.material.mobile.min.css" />
+
 <style>
-    .my-tab {
-        min-height: 400px;
+    .k-dropdowntree .k-sprite, .k-popup .k-sprite {
+        background-image: url("https://demos.telerik.com/kendo-ui/content/web/treeview/coloricons-sprite.png");
+    }
+
+    .rootfolder {
+        background-position: 0 0;
+    }
+
+    .folder {
+        background-position: 0 -16px;
+    }
+
+    .pdf {
+        background-position: 0 -32px;
+    }
+
+    .html {
+        background-position: 0 -48px;
+    }
+
+    .image {
+        background-position: 0 -64px;
+    }
+
+    .k-dropdown-wrap .k-input {
+        display: block;
+    }
+
+    .k-dropdown-wrap .k-sprite {
+        vertical-align: middle;
     }
 </style>
+<script id="dropdowntree-template" type="text/kendo-ui-template">
+    #: item.text #
+</script>
+<script id="dropdowntree-value-template" type="text/kendo-ui-template">
+    <span class="k-sprite #: spriteCssClass #"></span>
+    <span> #: data.text # </span>
+</script>
+<script>
+    $(document).ready(function () {
+        $("#dropdowntree").kendoDropDownTree({
+            template: kendo.template($("#dropdowntree-template").html()),
+            valueTemplate: kendo.template($("#dropdowntree-value-template").html()),
+            dataTextField: "text",
+            dataSpriteCssClassField: "spriteCssClass",
+            dataSource: [{
+                id: 1, text: "Nhà Đất", expanded: true, spriteCssClass: "rootfolder", items: [
+                    {
+                        id: 2, text: "Nhà", expanded: true, imageUrl: "https://demos.telerik.com/kendo-ui/content/web/treeview/mail.png", items: [
+                            { id: 3, text: "Mua Bán", spriteCssClass: "folder" },
+                            { id: 4, text: "Tặng Cho", spriteCssClass: "folder" },
+                            { id: 5, text: "logo.png", spriteCssClass: "folder" }
+                        ]
+                    },
+                    {
+                        id: 6, text: "Đất", expanded: true, spriteCssClass: "folder", items: [
+                            { id: 7, text: "Chuyển Nhượng", spriteCssClass: "folder" },
+                            { id: 8, text: "Tặng Cho", spriteCssClass: "folder" },
+                        ]
+                    },
+                    {
+                        id: 9, text: "Chung Cư", expanded: true, spriteCssClass: "folder", items: [
+                            { id: 10, text: "Mua Bán", spriteCssClass: "folder" },
+                            { id: 11, text: "Tặng Cho", spriteCssClass: "folder" }
+                        ]
+                    }
+                ]
+            }]
+        });
+    });
+
+</script>
 <div class="page-content-inner">
     <div class="row">
         <div class="col-md-12">
             <section id="loginForm">
-                @using (Html.BeginForm("InPhieuYeuCau", "HopDong", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                @using (Html.BeginForm("Create", "HopDong", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Số Hợp Đồng</label>
-                                    <div class="col-md-8">
-                                        @Html.TextBoxFor(m => m.SoHopDong, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.SoHopDong, "", new { @class = "text-danger" })
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs ">
+                                <li class="active">Thông Tin Hợp Đồng</li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="row">
+                                    <div class="actions pull-right" style="padding-bottom:10px; margin-top:-65px; margin-right:15px;">
+                                        <div class="actions">
+                                            <input type="submit" class="btn btn-default" value="Lưu" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Số Công Chứng</label>
-                                    <div class="col-md-8">
-                                        @Html.TextBoxFor(m => m.SoCongChung, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.SoCongChung, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Số Hợp Đồng</label>
+                                            <div class="col-md-8">
+                                                @Html.TextBoxFor(m => m.SoHopDong, new { @class = "form-control text-primary", @ReadOnly = "true" })
+                                                @Html.ValidationMessageFor(m => m.SoHopDong, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Loại Hợp Đồng</label>
-                                    <div class="col-md-8">
-                                        @Html.TextBoxFor(m => m.SoHopDong, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.SoHopDong, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Trạng Thái</label>
-                                    <div class="col-md-8">
-                                        @Html.TextBoxFor(m => m.SoCongChung, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.SoCongChung, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" style="padding-right:inherit">H.Thức Công Chứng</label>
-                                    <div class="col-md-8">
-                                        @Html.TextBoxFor(m => m.SoHopDong, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.SoHopDong, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if (false)
-                        {
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Người Tạo</label>
-                                        <div class="col-md-8">
-                                            @Html.TextBoxFor(m => m.SoHopDong, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(m => m.SoHopDong, "", new { @class = "text-danger" })
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Số Công Chứng</label>
+                                            <div class="col-md-8">
+                                                @Html.TextBoxFor(m => m.SoCongChung, new { @class = "form-control", @ReadOnly = "true" })
+                                                @Html.ValidationMessageFor(m => m.SoCongChung, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Ngày Tạo</label>
-                                        <div class="col-md-8">
-                                            @Html.TextBoxFor(m => m.SoCongChung, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(m => m.SoCongChung, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Loại Hợp Đồng</label>
+                                            <div class="col-md-8">
+                                                <div class="demo-section k-content">
+                                                    <div id="dropdowntree" style="width: 100%;"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Trạng Thái</label>
+                                            <div class="col-md-8">
+                                                @Html.TextBoxFor(m => m.TrangThai, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.TrangThai, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" style="padding-right:inherit">H.Thức Công Chứng</label>
+                                            <div class="col-md-8">
+                                                @Html.TextBoxFor(m => m.HinhThucCongChung, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.HinhThucCongChung, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @if (false)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Người Tạo</label>
+                                                <div class="col-md-8">
+                                                    @Html.TextBoxFor(m => m.SoHopDong, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(m => m.SoHopDong, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Ngày Tạo</label>
+                                                <div class="col-md-8">
+                                                    @Html.TextBoxFor(m => m.SoCongChung, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(m => m.SoCongChung, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+
+                                @if (false)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Công Chứng Viên</label>
+                                                <div class="col-md-8">
+                                                    @Html.TextBoxFor(m => m.SoHopDong, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(m => m.SoHopDong, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Ngày Duyệt</label>
+                                                <div class="col-md-8">
+                                                    @Html.TextBoxFor(m => m.SoCongChung, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(m => m.SoCongChung, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Cộng Tác Viên</label>
+                                            <div class="col-md-8">
+                                                @Html.TextBoxFor(m => m.SoHopDong, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.SoHopDong, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if (false)
+                                    {
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Tệp Đính Kèm</label>
+                                                <div class="col-md-8">
+                                                    @Html.TextBoxFor(m => m.SoCongChung, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(m => m.SoCongChung, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
                                 </div>
                             </div>
-
-                        }
-
-                        @if (false)
-                        {
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Công Chứng Viên</label>
-                                        <div class="col-md-8">
-                                            @Html.TextBoxFor(m => m.SoHopDong, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(m => m.SoHopDong, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Ngày Duyệt</label>
-                                        <div class="col-md-8">
-                                            @Html.TextBoxFor(m => m.SoCongChung, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(m => m.SoCongChung, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Cộng Tác Viên</label>
-                                    <div class="col-md-8">
-                                        @Html.TextBoxFor(m => m.SoHopDong, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.SoHopDong, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                            @if (false)
-                            {
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Tệp Đính Kèm</label>
-                                        <div class="col-md-8">
-                                            @Html.TextBoxFor(m => m.SoCongChung, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(m => m.SoCongChung, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -171,14 +268,7 @@
                                     @Html.Partial("_TaiSanPartial", new TaiSanViewModel())
                                 </div>
                                 <div class="tab-pane" id="tab_15_3">
-                                    <p> Howdy, I'm in Section 3. </p>
-                                    <p>
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat
-                                    </p>
-                                    <p>
-                                        <a class="btn yellow" href="ui_tabs_accordions_navs.html#tab_15_3" target="_blank"> Activate this tab via URL </a>
-                                    </p>
+                                    @Html.Partial("_NoiDungHopDong")
                                 </div>
                             </div>
                         </div>

@@ -21,14 +21,30 @@ namespace WebsiteCongChung.Controllers
             return View();
         }
 
-        public ActionResult InPhieuYeuCau(HopDongViewModel model)
+        // GET: HopDong/Xem
+        public ActionResult Xem()
+        {
+            return View("Create", HopDongViewModel.Sample);
+        }
+
+        // GET: HopDong/Create
+        [HttpPost]
+        public ActionResult Create(HopDongViewModel model)
+        {
+            return Redirect("Xem");
+            
+        }
+
+
+        [HttpPost]
+        public ActionResult InPhieuYeuCau(PhieuYeuCauViewModel model)
         {
             if (ModelState.IsValid)
             {
-                return View("Create", model);
+                return Json("anh khong dep trai", JsonRequestBehavior.AllowGet);
             }
 
-            return View("Create", model);
+            return Json("anh dep trai", JsonRequestBehavior.AllowGet);
         }
     }
 }

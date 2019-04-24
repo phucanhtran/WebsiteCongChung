@@ -1,15 +1,23 @@
 ﻿@using WebsiteCongChung.Models
 @model PhieuYeuCauViewModel
-
+<style>
+    textarea {
+        resize: none;
+    }
+</style>
+<script src="~/Scripts/test.js"></script>
 @{
-    using (Html.BeginForm("InPhieuYeuCau", "HopDong"))
     {
 
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                     <div class="col-md-2 pull-right">
-                        <input type="submit" value="In phiếu yêu cầu" class="btn btn-default btn-group-justified" />
+                        @Ajax.ActionLink("In phiếu yêu cầu", "InPhieuYeuCau", "HopDong", new AjaxOptions()
+                           {
+                               HttpMethod = "POST",
+                               OnComplete = "onComplete"
+                           }, new { @class = "btn btn-default btn-group-justified" })
                     </div>
                 </div>
             </div>
@@ -80,7 +88,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">Giấy Tờ Kèm Theo</label>
                     <div class="col-md-10">
-                        @Html.TextAreaFor(m => m.HoSoDinhKem, new { @class = "form-control" })
+                        @Html.TextAreaFor(m => m.HoSoDinhKem, new { @class = "form-control", @style = "height: 100px;" })
                         @Html.ValidationMessageFor(m => m.HoSoDinhKem, "", new { @class = "text-danger" })
                     </div>
                 </div>
