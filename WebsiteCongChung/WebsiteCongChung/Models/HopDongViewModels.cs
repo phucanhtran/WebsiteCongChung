@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -64,5 +65,35 @@ namespace WebsiteCongChung.Models
         public string HoKhau { get; set; }
         public string NoiDungYeuCau { get; set; }
         public string HoSoDinhKem { get; set; }
+    }
+
+    public class NoiDungHopDong
+    {
+        public string MaLoaiHopDong { get; set; }
+        public string NoiDung { get; set; }
+        private static string result = "";
+        public static IList<NoiDungHopDong> Samples
+        {
+            get
+            {
+               if (string.IsNullOrEmpty(result))
+               {
+                    try
+                    {
+                        result = File.ReadAllText("C:\\Users\\Ju\\source\\repos\\WebsiteCongChung.git\\trunk\\WebsiteCongChung\\WebsiteCongChung\\Files\\Hop.txt");
+                    }
+                    catch(Exception ex) { }
+                }
+                
+                
+                return new List<NoiDungHopDong>() {
+                    new NoiDungHopDong()
+                    {
+                        MaLoaiHopDong = "",
+                        NoiDung = result
+                    }
+                };
+            }
+        }
     }
 }

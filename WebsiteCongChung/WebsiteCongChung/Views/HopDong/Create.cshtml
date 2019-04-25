@@ -18,30 +18,6 @@
 <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.516/styles/kendo.material.mobile.min.css" />
 
 <style>
-    .k-dropdowntree .k-sprite, .k-popup .k-sprite {
-        background-image: url("https://demos.telerik.com/kendo-ui/content/web/treeview/coloricons-sprite.png");
-    }
-
-    .rootfolder {
-        background-position: 0 0;
-    }
-
-    .folder {
-        background-position: 0 -16px;
-    }
-
-    .pdf {
-        background-position: 0 -32px;
-    }
-
-    .html {
-        background-position: 0 -48px;
-    }
-
-    .image {
-        background-position: 0 -64px;
-    }
-
     .k-dropdown-wrap .k-input {
         display: block;
     }
@@ -51,45 +27,14 @@
     }
 </style>
 <script id="dropdowntree-template" type="text/kendo-ui-template">
+    # if (item.ImageURL != "") {#
+        <image src="#: item.ImageURL #" style="width:16px; height:16px;" />
+    # } #
     #: item.text #
 </script>
 <script id="dropdowntree-value-template" type="text/kendo-ui-template">
-    <span class="k-sprite #: spriteCssClass #"></span>
+    <i class="fa #: spriteCssClass #"></i>
     <span> #: data.text # </span>
-</script>
-<script>
-    $(document).ready(function () {
-        $("#dropdowntree").kendoDropDownTree({
-            template: kendo.template($("#dropdowntree-template").html()),
-            valueTemplate: kendo.template($("#dropdowntree-value-template").html()),
-            dataTextField: "text",
-            dataSpriteCssClassField: "spriteCssClass",
-            dataSource: [{
-                id: 1, text: "Nhà Đất", expanded: true, spriteCssClass: "rootfolder", items: [
-                    {
-                        id: 2, text: "Nhà", expanded: true, imageUrl: "https://demos.telerik.com/kendo-ui/content/web/treeview/mail.png", items: [
-                            { id: 3, text: "Mua Bán", spriteCssClass: "folder" },
-                            { id: 4, text: "Tặng Cho", spriteCssClass: "folder" },
-                            { id: 5, text: "logo.png", spriteCssClass: "folder" }
-                        ]
-                    },
-                    {
-                        id: 6, text: "Đất", expanded: true, spriteCssClass: "folder", items: [
-                            { id: 7, text: "Chuyển Nhượng", spriteCssClass: "folder" },
-                            { id: 8, text: "Tặng Cho", spriteCssClass: "folder" },
-                        ]
-                    },
-                    {
-                        id: 9, text: "Chung Cư", expanded: true, spriteCssClass: "folder", items: [
-                            { id: 10, text: "Mua Bán", spriteCssClass: "folder" },
-                            { id: 11, text: "Tặng Cho", spriteCssClass: "folder" }
-                        ]
-                    }
-                ]
-            }]
-        });
-    });
-
 </script>
 <div class="page-content-inner">
     <div class="row">

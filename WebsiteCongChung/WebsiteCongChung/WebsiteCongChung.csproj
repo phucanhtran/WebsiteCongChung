@@ -190,6 +190,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HopDongController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -198,6 +199,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\General\LoaiHopDongViewModel.cs" />
     <Compile Include="Models\HopDongViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -3463,6 +3465,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\Hop.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -3664,6 +3667,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="assets\apps\img\" />
     <Folder Include="assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
+    <Folder Include="Views\General\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

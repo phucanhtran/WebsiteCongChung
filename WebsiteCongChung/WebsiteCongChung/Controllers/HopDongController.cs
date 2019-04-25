@@ -35,7 +35,6 @@ namespace WebsiteCongChung.Controllers
             
         }
 
-
         [HttpPost]
         public ActionResult InPhieuYeuCau(PhieuYeuCauViewModel model)
         {
@@ -45,6 +44,12 @@ namespace WebsiteCongChung.Controllers
             }
 
             return Json("anh dep trai", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetNoiDungHopDong(string maLoaiHD)
+        {
+            return Json(NoiDungHopDong.Samples.First(), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -6,9 +6,9 @@
     }
 </style>
 <script src="~/Scripts/test.js"></script>
+<script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
 @{
     {
-
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
@@ -22,77 +22,92 @@
                 </div>
             </div>
         </div>
+        <div id="phieu-yeu-cau">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Ông/Bà</label>
+                        <div class="col-md-7">
+                            @Html.TextBoxFor(m => m.TenKH, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.TenKH, "", new { @class = "text-danger" })
+                        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="col-md-2 control-label">Ông/Bà</label>
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.TenKH, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.TenKH, "", new { @class = "text-danger" })
-                    </div>
-
-                    <label class="col-md-1 control-label" style="padding-right:inherit">Năm Sinh</label>
-                    <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.NgaySinh, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.NgaySinh, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="col-md-2 control-label">CMND/Hộ Chiếu</label>
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(m => m.CMND, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.CMND, "", new { @class = "text-danger" })
-                    </div>
-
-                    <label class="col-md-1 control-label" style="padding-right:inherit">Ngày Cấp</label>
-                    <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.HoSoDinhKem, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.HoSoDinhKem, "", new { @class = "text-danger" })
+                        <label class="col-md-1 control-label" style="padding-right:inherit">Năm Sinh</label>
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(m => m.NgaySinh, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.NgaySinh, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="col-md-2 control-label">Hộ Khẩu Thường Trú</label>
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.CMND, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.CMND, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">CMND/Hộ Chiếu</label>
+                        <div class="col-md-7">
+                            @Html.TextBoxFor(m => m.CMND, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.CMND, "", new { @class = "text-danger" })
+                        </div>
+
+                        <label class="col-md-1 control-label" style="padding-right:inherit">Ngày Cấp</label>
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(m => m.HoSoDinhKem, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.HoSoDinhKem, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="col-md-2 control-label">Nội Dung Yêu Cầu</label>
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.NoiDungYeuCau, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.NoiDungYeuCau, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Hộ Khẩu Thường Trú</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.CMND, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.CMND, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="col-md-2 control-label">Giấy Tờ Kèm Theo</label>
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(m => m.HoSoDinhKem, new { @class = "form-control", @style = "height: 100px;" })
-                        @Html.ValidationMessageFor(m => m.HoSoDinhKem, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Nội Dung Yêu Cầu</label>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.NoiDungYeuCau, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.NoiDungYeuCau, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Giấy Tờ Kèm Theo</label>
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(m => m.HoSoDinhKem, new { @class = "form-control", @style = "height: 100px;" })
+                            @Html.ValidationMessageFor(m => m.HoSoDinhKem, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     }
+    <div id="InPhieuYeuCau" class="hidden">
+        <textarea name="InPhieuYeuCauEditor" id="InPhieuYeuCauEditor" rows="10" cols="80">
+        </textarea>
+        <script>
+            CKEDITOR.replace('InPhieuYeuCauEditor', {
+                height: 500
+            });
+            CKEDITOR.editorConfig = function (config) {
+                config.language = 'es';
+                config.uiColor = '#F7B42C';
+                config.toolbarCanCollapse = true;
+            };
+        </script>
+    </div>
 }
