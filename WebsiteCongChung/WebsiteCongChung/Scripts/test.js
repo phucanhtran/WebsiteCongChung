@@ -39,8 +39,6 @@ var KiemTraTS = function () {
 }
 
 function printPhieuYeuCau() {
-    var win = window.open('', '', 'width=800, height=500, resizable=1, scrollbars=1'),
-        doc = win.document.open();
     var htmlStart =
         '<!DOCTYPE html>' +
         '<html>' +
@@ -62,7 +60,7 @@ function printPhieuYeuCau() {
 
         + '<p style="text-align:center"><span style="font-size:19px"><span style="font-family:&quot;Times New Roman&quot;,Times,serif"><strong>PHIẾU Y&Ecirc;U CẦU C&Ocirc;NG CHỨNG HỢP ĐỒNG, GIAO DỊCH</strong></span></span></p>'
 
-        + '<p style="text-align:center">&nbsp;</p>
+        + '<p style="text-align:center">&nbsp;</p>'
 
         + '<p style="margin-left:80px; text-align:justify"><span style="font-size:17px"><span style="font-family:&quot;Times New Roman&quot;,Times,serif">K&iacute;nh gửi: Văn ph&ograve;ng C&ocirc;ng chứng Quận 10, TP.HCM</span></span></p>'
 
@@ -97,8 +95,8 @@ function printPhieuYeuCau() {
         + '<p style="margin-left:80px"><em><span style="font-size:17px"><span style="font-family:&quot;Times New Roman&quot;,Times,serif"><strong>NGƯỜI NHẬN PHIẾU&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;NGƯỜI NỘP PHIẾU</strong></span></span></em></p>'
 
         + '<p style="margin-left:80px; text-align:justify"><em><span style="font-size:17px"><span style="font-family:&quot;Times New Roman&quot;,Times,serif"><em>(K&yacute; v&agrave; ghi r&otilde; họ t&ecirc;n)</em></span></span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span style="font-size:17px"><span style="font-family:&quot;Times New Roman&quot;,Times,serif"><em>(K&yacute; v&agrave; ghi r&otilde; họ t&ecirc;n)</em></span></span></em></p>'
-    CKEDITOR.instances['editor1'].setData(printableContent);
-    CKEDITOR.instances['InPhieuYeuCauEditor'].execCommand("print")
+    CKEDITOR.instances['InPhieuYeuCauEditor'].setData(printableContent);
+    CKEDITOR.instances['InPhieuYeuCauEditor'].execCommand('print');
 }
 
 function createTreeView(templates) {
